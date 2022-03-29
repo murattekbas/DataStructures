@@ -1,12 +1,31 @@
-﻿// See https://aka.ms/new-console-template for more information
-using SinglyLinkedList;
+﻿using SinglyLinkedList;
+using System;
 
-var linkedList = new SinglyLinkedList<int>();
-linkedList.AddFirst(1);
-linkedList.AddFirst(2);
-linkedList.AddFirst(3);
-linkedList.AddLast(-5);
-linkedList.AddAfter(linkedList.Head.Next, 32);
+namespace MyApp // Note: actual namespace depends on the project name.
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            var linkedList = new SinglyLinkedList<int>();
+            linkedList.AddFirst(1);
+            linkedList.AddFirst(2);
+            linkedList.AddFirst(3);
+            linkedList.AddLast(-5);
+            linkedList.AddAfter(linkedList.Head.Next, 32);
+            foreach (var item in linkedList)
+            {
+                Console.WriteLine(item);
+            }
 
-Console.ReadKey();
+            linkedList.RemoveFirst();
+
+
+            Console.ReadKey();
+        }
+    }
+}
+
+
+
 
