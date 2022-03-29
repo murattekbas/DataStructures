@@ -1,0 +1,20 @@
+﻿Diziler
+------------------
+Avantajları
+	* Basit ve kullanımı kolay
+	* Elemanlara doğrudan erişim imkanı sunar O(1).
+Dezavantajları
+	* Önceden bellek tahsisi ve dizideki boş elemanları için belleğin işgal edilmesi
+	* Sabit boyut
+	* Bir blok tahsisi
+	* Konuma dayalı karmaşık ekleme
+
+Linked List
+------------------
+Avantajları
+	* Bağlı liste sabit zamanda genişlitilebilir, O(1)
+	* Önceden bellek tahsisini engeller.
+Dezavantajları
+------------------
+	* Erişim zamanı
+	* En kötü durumda bir elemana erişmenin maliyet, O(n).
