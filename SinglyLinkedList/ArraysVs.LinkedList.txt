@@ -17,4 +17,4 @@ Avantajları
 Dezavantajları
 ------------------
 	* Erişim zamanı
-	* En kötü durumda bir elemana erişmenin maliyet, O(n).
+	* En kötü durumda bir elemana erişmenin maliyeti, O(n).
