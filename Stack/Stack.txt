@@ -1,0 +1,20 @@
+﻿Yığınlar ifadelerin değerlendirilmelerinden, işlev çağrılarına kadar bilgisayar bilimlerinde yaygın olarak kullanılır.
+Last in First out şeklinde çalışır.
+Yığınların sadece son elemanlarına erişim sağlanabilir.
+C# dilinde Stack veri yapısı hem object hem de generic olarak koleksiyonlar kapsamında sunulmaktadır.
+Push and pop 
+
+Doğrudan kullanılan uygulamalar
+-------------------------------
+	*Sembollerin dengelenmesi
+	*Infix to Postfix dönüşümü
+	*Postfix deyimlerinin değerlendirilmesi
+	*Bir tarayıcıdaki ziyaret edilmiş sayfa listesi
+	*Bir metin editoründe yapılan değişikliklerin geri alınması
+	*HTML ve XML belgelerinde etiketlerin eşleşmesi
+
+Dolaylı kullanılan uygulamalar
+------------------------------
+	* Diğer veri yapılarında yardımcı veri yapısı olabilir, yani diğer veri yapılarının yardımcı bileşeni olarak kullanılabilir
+	* Tower of Hanoi, Tree Traversals, Stock span problem, histogram problem algoritmalarında kullanılabilir.
+	* Bactracking algoritma tasarlama tekniğinde kullanılabilir.
