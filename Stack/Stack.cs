@@ -11,7 +11,6 @@ namespace Stack
         private readonly IStack<T> _stack;
         public int Count => _stack.Count;
 
-
         public Stack(StackType type=StackType.Array)
         {
             if(type == StackType.Array)
@@ -22,6 +21,21 @@ namespace Stack
             {
                 _stack = new LinkedListStack<T>();
             }
+        }
+
+        public T Pop()
+        {
+            return _stack.Pop();
+        }
+
+        public T Peek()
+        {
+            return (_stack.Peek()); 
+        }
+
+        public void Push(T value)
+        {
+            _stack.Push(value);
         }
     }
 
