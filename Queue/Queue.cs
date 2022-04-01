@@ -11,10 +11,24 @@
             {
                 _queue = new ArrayQueue<T>();
             }
-            else if(queueType==QueueType.LinkedList) 
+            else 
             {
                 _queue = new LinkedListQueue<T>();
             }
+        }
+
+        public void EnQueue(T value)
+        {
+            _queue.Enqueue(value);
+        }
+        public T DeQueue()
+        {
+            return _queue.Dequeue();
+        }
+
+        public T Peek()
+        {
+            return _queue.Peek();
         }
     }
 
@@ -22,7 +36,8 @@
     {
         int Count { get; }
         public void Enqueue(T value);
-        public void Dequeue();
+        public T Dequeue();
+        public T Peek();
     }
 
     public enum QueueType
