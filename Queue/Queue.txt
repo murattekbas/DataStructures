@@ -1,0 +1,16 @@
+﻿Doğrudan uygulamalar
+---------------------------
+ *İşletim sistemleri iş planlaması (Yazıcı kuyrukları)
+ *Gerçek hayattaki kuyruk uygulamalarının modellenmesi
+ *Çoklu programlama
+ *Asenkron veri transferi
+
+ Yardımcı işlevler
+ ------------------------------
+  *Algoritmaları için yardımcı veri türü
+  *Diğer veri yapılarının bileşenleri
+
+
+  Basit dairesel dizi tabanlı uygulama
+  Dinamik dairesel dizi tabanlı uygulama
+  Bağlı liste tabanlı uygulama
