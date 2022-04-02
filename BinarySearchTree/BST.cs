@@ -35,7 +35,32 @@ namespace BinarySearchTree
             }
             else
             {
-
+                var current=Root;
+                Node<T> parent;
+                while (true)
+                {
+                    parent = current;
+                    // Sol alt ağaç
+                    if (value.CompareTo(current.Value)<0)
+                    {
+                        current = current.Left;
+                        if (current == null)
+                        {
+                            current.Left = newNode;
+                            break;
+                        }
+                    }
+                    //Sağ alt ağaç
+                    else
+                    {
+                        current=current.Right;
+                        if(current == null)
+                        {
+                            current.Right = newNode;
+                            break;
+                        }
+                    }
+                }
             }
         }
     }
