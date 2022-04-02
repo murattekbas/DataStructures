@@ -41,7 +41,7 @@ namespace BinarySearchTree
                         current = current.Left;
                         if (current == null)
                         {
-                            current.Left = newNode;
+                            parent.Left = newNode;
                             break;
                         }
                     }
@@ -51,7 +51,7 @@ namespace BinarySearchTree
                         current=current.Right;
                         if(current == null)
                         {
-                            current.Right = newNode;
+                            parent.Right = newNode;
                             break;
                         }
                     }
