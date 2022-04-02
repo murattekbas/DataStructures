@@ -1,0 +1,32 @@
+﻿İkili ağaçların (Binary Tree) özel bir hali olan ikili arama ağaçlarında, düğümlerde duran bilgilerin 
+birbirine göre küçüklük büyüklük ilişkisi bulunmalıdır. Örneğin tam sayılardan(integer) oluşan veriler 
+tutulacaksa bu verilerin aralarında küçük-büyük ilişkisi bulunmaktadır.
+
+İkili arama ağacı, her düğümün solundaki koldan ulaşılabilecek bütün verilerin düğümün değerinden küçük, 
+sağ kolundan ulaşılabilecek verilerin değerinin o düğümün değerinden büyük olmasını şart koşar.
+
+İkili arama ağaçlarında;
+	* Ekleme
+	* Inorder, preorder, postorder dolaşma
+	* Minimun değerli elemanı bulma
+	* Maksimum değerli elemanı bulma
+	* Herhangi bir ifadeyi bulma
+	* Silme		
+		* Yaprak silme
+		* Tek düğümü olan bir düğümü silme
+		* İki düğümü olan bir düğümü silme
+
+Ana işlevler
+-------------
+	* Arama / Minimum bulma / Maksimum bulma
+	* Ekleme
+	* Silme
+Yardımcı işlevler
+-----------------
+	* Ağaç ikili arama ağacı değil mi?
+	* İkili arama ağacında sıralama
+
+Kök düğümü ağacı her zaman sağ ve sol olarak iki parçaya böldüğünden ikili arama ağacı sıralı bir 
+dizi oluşturur.
+
+Problemlerde öncelikle sol alt ağaç sonra kök ve daha sonra sağ alt ağaç dikkate alınır.
