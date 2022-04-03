@@ -12,4 +12,5 @@ bst.Add(34);
 bst.Add(2);
 
 
+
 Console.ReadKey();
