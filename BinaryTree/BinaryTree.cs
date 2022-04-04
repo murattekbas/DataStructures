@@ -1,5 +1,4 @@
-﻿
-namespace BinaryTree
+﻿namespace BinaryTree
 {
     public class BinaryTree<T> where T : IComparable
     {
@@ -8,6 +7,7 @@ namespace BinaryTree
         {
             list = new List<Node<T>>();
         }
+
         //LEFT - ROOT - RIGHT
         public List<Node<T>> InOrder(Node<T> root)
         {
@@ -19,7 +19,6 @@ namespace BinaryTree
             }
             return list;
         }  
-
         public List<Node<T>> InOrderNonRecursiveTraversal(Node<T> root)
         {
             var list = new List<Node<T>>();
@@ -50,7 +49,6 @@ namespace BinaryTree
             return list;
             
         }
-
         // ROOT - LEFT - RIGHT
         public List<Node<T>> PreOrder(Node<T> root)
         {
@@ -62,7 +60,27 @@ namespace BinaryTree
             }
             return list;
         }
+        // ROOT - LEFT - RIGHT
+        public List<Node<T>> PreOrderNonRecursiveTraversal(Node<T> root)
+        {
+            var list=new List<Node<T>>();   
+            var S=new Stack.Stack<Node<T>>();
+            if (root == null) return list;
 
+            S.Push(root);
+
+            while (!(S.Count==0))
+            {
+                var temp=S.Pop();
+                list.Add(temp);
+                if (temp.Right!=null)
+                    S.Push(temp.Right);
+                if (temp.Left!=null)
+                    S.Push(temp.Left);
+            }
+
+            return list;
+        }
         // LEFT - RIGHT - ROOT
         public List<Node<T>> PostOrder(Node<T> root)
         {
@@ -73,6 +91,11 @@ namespace BinaryTree
                 list.Add(root);
             }
             return list;
+        }
+        // LEFT - RIGHT - ROOT
+        public List<Node<T>> PostOrderNonRecursiveTraversal(Node<T> root)
+        {
+            throw new NotImplementedException();
         }
 
         public void ClearList() => list.Clear();
