@@ -28,5 +28,9 @@ Console.WriteLine();
 bt.PostOrder(BST_list.Root).
     ForEach(node => Console.Write($"{node,-3} "));
 
+Console.WriteLine();
+bt.InOrderNonRecursiveTraversal(BST_list.Root).
+    ForEach(node => Console.Write($"{node,-3} "));
+
 
 Console.ReadKey();
