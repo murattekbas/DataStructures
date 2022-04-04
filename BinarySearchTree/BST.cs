@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using BinaryTree;
+using System.Collections;
 
 namespace BinarySearchTree
 {
@@ -8,6 +9,13 @@ namespace BinarySearchTree
         public BST()
         {
 
+        }
+        public BST(IEnumerable<T> collection)
+        {
+            foreach (var item in collection)
+            {
+                Add(item);
+            }
         }
         public IEnumerator<T> GetEnumerator()
         {
