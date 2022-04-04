@@ -98,6 +98,23 @@
             throw new NotImplementedException();
         }
 
+        public List<Node<T>> LevelOrderNonRecursiveTraversal(Node<T> root)
+        {
+            var list = new List<Node<T>>();
+            var Q=new Queue.Queue<Node<T>>();
+            Q.EnQueue(root);
+            while (Q.Count>0)
+            {
+                var temp = Q.DeQueue();
+                list.Add(temp);
+                if (temp.Left!=null)
+                    Q.EnQueue(temp.Left);
+                if (temp.Right != null)
+                    Q.EnQueue(temp.Right);
+            }
+            return list;
+        }
+
         public void ClearList() => list.Clear();
     }
 }
