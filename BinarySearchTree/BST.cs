@@ -102,5 +102,39 @@ namespace BinarySearchTree
             }
             return current;
         }
+
+        public Node<T> Remove(Node<T> root,T key)
+        {
+            if (root == null) throw new ArgumentNullException();
+
+            //RECURSIVE
+            if (key.CompareTo(root.Value) < 0)
+            {
+                root.Left = Remove(root.Left, key);
+
+            }
+            else if (key.CompareTo(root.Value) > 0)
+            {
+                root.Right= Remove(root.Right, key);    
+            }
+            else
+            {
+                //Silme
+                //Tek çocuk ya da çocuksuz
+                if (root.Left == null)
+                {
+                    return root.Right;
+                }
+                else if (root.Right == null)
+                {
+                    return root.Left;
+                }
+                root.Value = FindMax(root.Right).Value;
+                root.Right = Remove(root.Right, root.Value);
+            }
+            return root;
+
+
+        }
     }
 }
