@@ -43,5 +43,7 @@ bt.LevelOrderNonRecursiveTraversal(BST_list.Root).
 Console.WriteLine($"Mimimum value: {BST_list.FindMin(BST_list.Root)}");
 Console.WriteLine($"Maximum value: {BST_list.FindMax(BST_list.Root)}");
 
+//BST_list.Find(BST_list.Root, 20);
+BST_list.Find(BST_list.Root,16);
 
 Console.ReadKey();
