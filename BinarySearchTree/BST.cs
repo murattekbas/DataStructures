@@ -66,5 +66,21 @@ namespace BinarySearchTree
                 }
             }
         }
+
+        public Node<T> FindMin(Node<T> root)
+        {
+            var current = root;
+            while (!(current.Left == null))
+                current = current.Left;
+            return current;
+        }
+
+        public Node<T> FindMax(Node<T> root)
+        {
+            var current = root;
+            while (!(current.Right == null))
+                current = current.Right;
+            return current;
+        }
     }
 }
