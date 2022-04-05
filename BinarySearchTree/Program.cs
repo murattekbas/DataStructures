@@ -46,4 +46,16 @@ Console.WriteLine($"Maximum value: {BST_list.FindMax(BST_list.Root)}");
 //BST_list.Find(BST_list.Root, 20);
 BST_list.Find(BST_list.Root,16);
 
+
+Console.WriteLine("------------");
+var bst1 = new BST<int>(new int[] { 23, 16, 45, 3, 22, 37, 99 });
+bst1.Remove(bst1.Root, 37);
+
+Console.WriteLine($"Number of Full Nodes               :"+$"{BinaryTree<int>.NumberOfFullNodes(bst1.Root)}");
+Console.WriteLine($"Number of Half Nodes               :" + $"{BinaryTree<int>.NumberOfHalfNodes(bst1.Root)}");
+
+
+var bst2 = new BST<int>(new int[] { 23, 16, 45, 3, 22, 37, 99 });
+new BinaryTree<int>().PrintPaths(bst2.Root);
+
 Console.ReadKey();
