@@ -146,6 +146,42 @@
             return temp;
         }
 
+        public int NumberOfLeafs(Node<T> root)
+        {
+            int count = 0;
+            if (root == null) return count;
+
+            var q= new Queue.Queue<Node<T>>();
+            q.EnQueue(root);
+            while(q.Count> 0)
+            {
+                var temp=q.DeQueue();
+                if (temp.Left == null && temp.Right==null) 
+                {
+                    count++;
+               }
+                if (temp.Left != null)
+                    q.EnQueue(temp.Left);
+                if (temp.Right != null)
+                {
+                    q.EnQueue(temp.Right);
+                }
+            }
+            return count;
+        }
+
+        public static int NumberOfFullNodes(Node<T> root) =>
+            new BinaryTree<T>().LevelOrderNonRecursiveTraversal(root)
+            .Where(node => node.Left != null && node.Right != null)
+            .ToList()
+            .Count;
+
+        public static int NumberOfHalfNodes(Node<T> root) =>
+            new BinaryTree<T>().LevelOrderNonRecursiveTraversal(root)
+            .Where(node => (node.Left != null && node.Right == null)||(node.Right != null && node.Left == null))
+            .ToList()
+            .Count;
+
         public void ClearList() => list.Clear();
     }
 }
