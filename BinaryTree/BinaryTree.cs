@@ -2,6 +2,7 @@
 {
     public class BinaryTree<T> where T : IComparable
     {
+        public Node<T>? Root { get; set; }
         public List<Node<T>> list { get;private set; }
         public BinaryTree()
         {
@@ -123,6 +124,26 @@
             int rightDepth=MaxDepth(root.Right);
             return (leftDepth>rightDepth) ? leftDepth+1 : rightDepth+1;
 
+        }
+
+        public Node<T> DeepestNode(Node<T> root)
+        {
+            Node<T> temp = null;
+            if (root == null) throw new Exception("Empty tree");
+
+            var q=new Queue.Queue<Node<T>>();
+
+            q.EnQueue(root);
+
+            while (q.Count > 0)
+            {
+                temp = q.DeQueue(); 
+                if (temp.Left!=null)
+                    q.EnQueue(temp.Left);
+                if(temp.Right!=null)
+                    q.EnQueue(temp.Right);
+            }
+            return temp;
         }
 
         public void ClearList() => list.Clear();
