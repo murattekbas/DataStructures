@@ -58,4 +58,9 @@ Console.WriteLine($"Number of Half Nodes               :" + $"{BinaryTree<int>.N
 var bst2 = new BST<int>(new int[] { 23, 16, 45, 3, 22, 37, 99 });
 new BinaryTree<int>().PrintPaths(bst2.Root);
 
+foreach (var item in bst2)
+{
+    Console.WriteLine(item);
+}
+
 Console.ReadKey();

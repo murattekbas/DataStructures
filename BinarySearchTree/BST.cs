@@ -19,12 +19,12 @@ namespace BinarySearchTree
         }
         public IEnumerator<T> GetEnumerator()
         {
-            throw new NotImplementedException();
+            return new BSTEnumerator<T>(Root);
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            throw new NotImplementedException();
+            return GetEnumerator(); 
         }
 
         public void Add(T value)
