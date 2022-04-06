@@ -10,5 +10,15 @@ foreach (var item in heap)
     Console.WriteLine(item);
 }
 
+Console.WriteLine("-------------------------");
+
+var heapMax = new MaxHeap<int>(new int[] { 54, 45, 36, 27, 29, 18, 21,11 });
+
+foreach (var item in heapMax)
+{
+    Console.Write(item+" ");
+}
+
+
 
 Console.ReadKey();
