@@ -59,17 +59,17 @@ namespace BinaryHeap
             Array[position] = value;
             position++;
             Count++;
-            //HeapifyUp
+            HeapifyUp();
         }
 
         public T DeleteMinMax()
         {
             if (position == 0) throw new IndexOutOfRangeException("Underflow");
             var temp = Array[0];
-            Array[0] = Array[position];
+            Array[0] = Array[position-1];
             position--;
             Count--;
-            //HeapifyDown();
+            HeapifyDown();
             return temp;
         }
 
