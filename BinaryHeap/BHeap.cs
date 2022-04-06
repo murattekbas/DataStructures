@@ -1,6 +1,8 @@
-﻿namespace BinaryHeap
+﻿using System.Collections;
+
+namespace BinaryHeap
 {
-    public class BHeap<T>
+    public abstract class BHeap<T>:IEnumerable<T>
     {
         public T[] Array { get; private set; }
         private int position; 
@@ -34,6 +36,44 @@
                 throw new InvalidOperationException();
             }
             return Array[0];
+        }
+        public void Swap(int first, int second)
+        {
+            var temp = Array[first];
+            Array[first] = Array[second];
+            Array[second] = temp;
+        }
+        public void Add(T value)
+        {
+            if (position == Array.Length) throw new IndexOutOfRangeException();
+            Array[position] = value;
+            position++;
+            Count++;
+            //HeapifyUp
+        }
+
+        public T DeleteMinMax()
+        {
+            if (position == 0) throw new IndexOutOfRangeException("Underflow");
+            var temp = Array[0];
+            Array[0] = Array[position];
+            position--;
+            Count--;
+            //HeapifyDown();
+            return temp;
+        }
+
+        protected abstract void HeapifyUp();
+        protected abstract void HeapifyDown();
+
+        public IEnumerator<T> GetEnumerator()
+        {
+            return Array.Take(position).GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
         }
     }
 }
