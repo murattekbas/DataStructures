@@ -2,7 +2,7 @@
 
 namespace BinaryHeap
 {
-    public abstract class BHeap<T>:IEnumerable<T>
+    public abstract class BHeap<T>:IEnumerable<T> where T : IComparable
     {
         public T[] Array { get; private set; }
         private int position; 
@@ -19,15 +19,25 @@ namespace BinaryHeap
             Array = new T[_size];
             position = 0;
         }
-        private int GetLeftChildIndex(int i) => 2 * i + 1;
-        private int GetRightChildIndex(int i) => 2 * i + 2;
-        private int GetParentIndex(int i) => (i - 1) / 2;
-        private bool HasLeftChild(int i) => GetLeftChildIndex(i) < position;
-        private bool HasRightChild(int i) => GetRightChildIndex(i) < position;
-        private bool IsRoot(int i) => i == 0;
-        private T GetLeftChild(int i) => Array[GetLeftChildIndex(i)];
-        private T GeRighttChild(int i) => Array[GetRightChildIndex(i)];
-        private T GetParent(int i) => Array[GetParentIndex(i)];
+        public BHeap(IEnumerable<T> collection)
+        {
+            Count = 0;
+            Array = new T[collection.ToArray().Length];
+            position = 0;
+            foreach (var item in collection)
+            {
+                Add(item);
+            }
+        }
+        protected int GetLeftChildIndex(int i) => 2 * i + 1;
+        protected int GetRightChildIndex(int i) => 2 * i + 2;
+        protected int GetParentIndex(int i) => (i - 1) / 2;
+        protected bool HasLeftChild(int i) => GetLeftChildIndex(i) < position;
+        protected bool HasRightChild(int i) => GetRightChildIndex(i) < position;
+        protected bool IsRoot(int i) => i == 0;
+        protected T GetLeftChild(int i) => Array[GetLeftChildIndex(i)];
+        protected T GeRightChild(int i) => Array[GetRightChildIndex(i)];
+        protected T GetParent(int i) => Array[GetParentIndex(i)];
         public bool IsEmpty() => position == 0;
         public T Peek()
         {
@@ -76,4 +86,6 @@ namespace BinaryHeap
             return GetEnumerator();
         }
     }
+
+    
 }
