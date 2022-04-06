@@ -5,7 +5,7 @@ namespace BinaryHeap
     public abstract class BHeap<T>:IEnumerable<T> where T : IComparable
     {
         public T[] Array { get; private set; }
-        private int position; 
+        protected int position; 
         public int Count { get; private set; }
         public BHeap()
         {

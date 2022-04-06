@@ -44,7 +44,13 @@ namespace BinaryHeap
 
         protected override void HeapifyUp()
         {
-            throw new NotImplementedException();
+            var index = position - 1;
+            while (!IsRoot(index) && Array[index].CompareTo(GetParent(index))<0)
+            {
+                var parentIndex = GetParentIndex(index);
+                Swap(parentIndex, index);
+                index = parentIndex;
+            }
         }
     }
 }
