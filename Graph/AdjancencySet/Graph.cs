@@ -36,24 +36,46 @@ namespace Graph.AdjancencySet
             vertices.Add(key,newVertex);
         }
 
-        public IGraph<T> Clone()
+        IGraph<T> IGraph<T>.Clone()
         {
-            throw new NotImplementedException();
+            return Clone();
+        }
+
+        public Graph<T> Clone()
+        {
+            var graph=new Graph<T>();
+
+            foreach (var vertex in vertices)
+            {
+                graph.AddVertex(vertex.Key);
+            }
+
+            foreach (var vertex in vertices)
+            {
+                foreach (var edge in vertex.Value.Edges)
+                {
+                    graph.AddEdge(vertex.Value.Key, edge.Key);
+                }
+            }
+
+            return graph;
         }
 
         public bool ContainsVertex(T key)
         {
-            throw new NotImplementedException();
+            return vertices.ContainsKey(key);   
         }
 
         public IEnumerable<T> Edges(T key)
         {
-            throw new NotImplementedException();
+            if (key==null) throw new ArgumentNullException();
+
+            return vertices[key].Edges.Select(x=>x.Key);
         }
 
         public IEnumerator<T> GetEnumerator()
         {
-            throw new NotImplementedException();
+            return vertices.Select(x=>x.Key).GetEnumerator(); 
         }
 
         public IGraphVertex<T> GetVertex(T key)
@@ -64,6 +86,16 @@ namespace Graph.AdjancencySet
         public bool HasEdge(T source, T dest)
         {
             throw new NotImplementedException();
+        }
+
+        public void AddEdge(T source, T dest)
+        {
+            if (source == null || dest == null) throw new ArgumentNullException();
+            if (!vertices.ContainsKey(source) || !vertices.ContainsKey(dest)) throw new ArgumentException("source or destination vertex is not in the graph");
+            if (vertices[source].Edges.Contains(vertices[dest]) || vertices[dest].Edges.Contains(vertices[source])) throw new ArgumentException("Already defined edge");
+
+            vertices[source].Edges.Add(vertices[dest]);
+            vertices[dest].Edges.Add(vertices[source]);
         }
 
         public void RemoveEdge(T source, T dest)
@@ -78,7 +110,7 @@ namespace Graph.AdjancencySet
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            throw new NotImplementedException();
+            return GetEnumerator();
         }
 
         private class GraphVertex<T> : IGraphVertex<T>
