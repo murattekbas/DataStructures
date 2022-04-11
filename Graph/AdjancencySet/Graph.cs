@@ -80,12 +80,14 @@ namespace Graph.AdjancencySet
 
         public IGraphVertex<T> GetVertex(T key)
         {
-            throw new NotImplementedException();
+            return vertices[key];
         }
 
         public bool HasEdge(T source, T dest)
         {
-            throw new NotImplementedException();
+            if (source == null || dest == null) throw new ArgumentNullException();
+            if (!vertices.ContainsKey(source) || !vertices.ContainsKey(dest)) throw new ArgumentException("source or destination vertex is not in the graph");
+            return vertices[source].Edges.Contains(vertices[dest]) && vertices[dest].Edges.Contains(vertices[source]);
         }
 
         public void AddEdge(T source, T dest)
@@ -100,12 +102,25 @@ namespace Graph.AdjancencySet
 
         public void RemoveEdge(T source, T dest)
         {
-            throw new NotImplementedException();
+            if (source == null || dest == null) throw new ArgumentNullException();
+            if (!vertices.ContainsKey(source) || !vertices.ContainsKey(dest)) throw new ArgumentException("source or destination vertex is not in the graph");
+            if (!vertices[source].Edges.Contains(vertices[dest]) || !vertices[dest].Edges.Contains(vertices[source])) throw new Exception("nothing to remove (edge)");
+            vertices[source].Edges.Remove(vertices[dest]);
+            vertices[dest].Edges.Remove(vertices[source]);
         }
 
         public void RemoveVertex(T key)
         {
-            throw new NotImplementedException();
+            if (key==null) throw new ArgumentNullException();
+
+            if (!vertices.ContainsKey(key)) throw new ArgumentException("The vertex is not in this graph");
+
+            foreach (var vertex in vertices[key].Edges)
+            {
+                vertex.Edges.Remove(vertices[key]);
+            }
+
+            vertices.Remove(key);
         }
 
         IEnumerator IEnumerable.GetEnumerator()
@@ -120,6 +135,7 @@ namespace Graph.AdjancencySet
             public GraphVertex(T key)
             {
                 Key = key;
+                Edges=new HashSet<GraphVertex<T>>();
             }
 
             IEnumerable<IEdge<T>> IGraphVertex<T>.Edges => Edges.Select(x => new Edge<T, int>(x, 1));
