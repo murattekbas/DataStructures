@@ -17,6 +17,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BinarySearchTree", "BinaryS
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BinaryHeap", "BinaryHeap\BinaryHeap.csproj", "{C4AF4AAA-CDA1-4A61-82ED-196D00C7EBF3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Set", "Set\Set.csproj", "{1400187B-5D13-46D8-884D-76385BE24E21}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{C4AF4AAA-CDA1-4A61-82ED-196D00C7EBF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C4AF4AAA-CDA1-4A61-82ED-196D00C7EBF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C4AF4AAA-CDA1-4A61-82ED-196D00C7EBF3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1400187B-5D13-46D8-884D-76385BE24E21}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1400187B-5D13-46D8-884D-76385BE24E21}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1400187B-5D13-46D8-884D-76385BE24E21}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1400187B-5D13-46D8-884D-76385BE24E21}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
