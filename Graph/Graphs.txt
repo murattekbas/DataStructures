@@ -1,0 +1,47 @@
+﻿Graph Representation
+---------------------------
+ * Bitişiklik Matrisi (Adjacency matrix)
+ * Bitişiklik Listesi (Adjacency List)
+ * Btişiklik kümesi (Adjacency set)
+
+ Çizgelerin Depolanması
+ --------------------------
+ V adet düğüm ve E adet kenarın depolanması ihtiyacı
+	*Düğümler dizi de depolanabilir
+	*Kenarlar başka bir şekilde örneğin komşuluk matrisi ya da komşuluk listesi saklanmalıdır.
+
+Gerçekleştirilmek istenen işlevler
+ *Belirli bir düğüm ile ilgili tüm kenarları alma
+ *İki düğümün doğrudan bağlı olup olmadığını test etme
+
+ Komşuluk Matrisi
+ ------------------------------
+ Bağlantı bilgilerini depolamanın kolay bir yoludur
+	İki düğümün bir birine doğrudan bağlı olup olmama durumu test etmenin maliyeti O(1)
+
+Komşu Liste
+Her düğüm kendisinden çıkan kenarların bir listesine sahiptir
+
+Komşuluk Listesinin Uygulanması
+Çözüm 1:Bağlı Listeler
+	*Çok fazla bellek kullanımı/bellek zaman ek yükü
+	*Dinamik ayrılmış bellek veya işaretçiler kullanmak kötü
+
+Çözüm 2:Vektörlerin Dizileri
+ *Kodlama daha kolay
+ *Ancak çok yavaş
+
+ Çözüm 3: Diziler
+	*Toplam kenar sayısının bilinmesi varsayımı
+	*Çok hızlı ve bellek verimli
+
+Çizge Uygulamaları
+ *EN kısa yol problemleri
+ Taşıma ağlarının modellenmesi
+ Bilgisayar ağlarının modellenmesi
+ Eşleşme problemleri
+ Gezgin satıcı problemleri
+ Çizge renklendirme problemleri
+ Rota planlama
+ Tedarik zincirleri
+
