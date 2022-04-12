@@ -10,7 +10,7 @@ namespace Graph.Interfaces
     {
         IDiEdge<T> GetOutEdge(IDiGraphVertex<T> targetVertex);
         IEnumerable<IDiEdge<T>> OutEdges { get; }
-        IEnumerable<IDiEdge<T>> IrEdges { get; }
+        IEnumerable<IDiEdge<T>> InEdges { get; }
         int OutEdgesCount { get; }
         int InEdgesCount { get; }
     }

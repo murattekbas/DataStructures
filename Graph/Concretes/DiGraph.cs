@@ -10,105 +10,181 @@ namespace Graph.Concretes
 {
     public class DiGraph<T>:IDiGraph<T>
     {
-        public IDiGraphVertex<T> ReferenceVertex => throw new NotImplementedException();
+        private Dictionary<T, DiGraphVertex<T>> vertices;
+        public IDiGraphVertex<T> ReferenceVertex => vertices[this.First()];
 
-        public IEnumerable<IDiGraphVertex<T>> VerticesAsEnumerable => throw new NotImplementedException();
+        public IEnumerable<IDiGraphVertex<T>> VerticesAsEnumerable => vertices.Select(x=>x.Value);
 
-        public bool isWeightedGraf => throw new NotImplementedException();
+        public bool isWeightedGraf => false;
 
-        public int Count => throw new NotImplementedException();
+        public int Count => vertices.Count;
 
-        IGraphVertex<T> IGraph<T>.ReferenceVertex => throw new NotImplementedException();
+        IGraphVertex<T> IGraph<T>.ReferenceVertex => vertices[this.First()] as IGraphVertex<T>;
 
-        IEnumerable<IGraphVertex<T>> IGraph<T>.VerticesAsEnumerable => throw new NotImplementedException();
+        IEnumerable<IGraphVertex<T>> IGraph<T>.VerticesAsEnumerable => vertices.Select(x => x.Value);
+        public DiGraph()
+        {
+            vertices = new Dictionary<T, DiGraphVertex<T>>();   
+        }
+        public DiGraph(IEnumerable<T> collection)
+        {
+            vertices = new Dictionary<T, DiGraphVertex<T>>();
+            foreach (var item in collection)
+            {
+                AddVertex(item);
+            }
+        }
 
         public void AddVertex(T key)
         {
-            throw new NotImplementedException();
+            if (key == null) throw new ArgumentNullException();
+            var newVertex = new DiGraphVertex<T>(key);
+            vertices.Add(key, newVertex);
         }
 
-        public IGraph<T> Clone()
+        IGraph<T> IGraph<T>.Clone()
         {
-            throw new NotImplementedException();
+            return Clone();
+        }
+
+        public DiGraph<T> Clone()
+        {
+            var graph = new DiGraph<T>();
+
+            foreach (var vertex in vertices)
+            {
+                graph.AddVertex(vertex.Key);
+            }
+
+            foreach (var vertex in vertices)
+            {
+                foreach (var node in vertex.Value.OutEdges)
+                {
+                    graph.AddEdge(vertex.Value.Key, node.Key);
+                }
+            }
+
+            return graph;
         }
 
         public bool ContainsVertex(T key)
         {
-            throw new NotImplementedException();
+            return vertices.ContainsKey(key);
         }
 
         public IEnumerable<T> Edges(T key)
         {
-            throw new NotImplementedException();
+            if (key == null) throw new ArgumentNullException();
+
+            return vertices[key].OutEdges.Select(x => x.Key);
         }
 
         public IEnumerator<T> GetEnumerator()
         {
-            throw new NotImplementedException();
+            return vertices.Select(x => x.Key).GetEnumerator();
         }
 
         public IDiGraphVertex<T> GetVertex(T key)
         {
-            throw new NotImplementedException();
+            return vertices[key];
         }
 
         public bool HasEdge(T source, T dest)
         {
-            throw new NotImplementedException();
+            if (source == null || dest == null) throw new ArgumentNullException();
+            if (!vertices.ContainsKey(source) || !vertices.ContainsKey(dest)) throw new ArgumentException("source or destination vertex is not in the graph");
+            return vertices[source].OutEdges.Contains(vertices[dest]) && vertices[dest].InEdges.Contains(vertices[source]);
+        }
+
+        public void AddEdge(T source, T dest)
+        {
+            if (source == null || dest == null) throw new ArgumentNullException();
+            if (!vertices.ContainsKey(source) || !vertices.ContainsKey(dest)) throw new ArgumentException("source or destination vertex is not in the graph");
+            if (vertices[source].OutEdges.Contains(vertices[dest]) || vertices[dest].InEdges.Contains(vertices[source])) throw new ArgumentException("Already defined edge");
+
+            vertices[source].OutEdges.Add(vertices[dest]);
+            vertices[dest].InEdges.Add(vertices[source]);
         }
 
         public void RemoveEdge(T source, T dest)
         {
-            throw new NotImplementedException();
+            if (source == null || dest == null) throw new ArgumentNullException();
+            if (!vertices.ContainsKey(source) || !vertices.ContainsKey(dest)) throw new ArgumentException("source or destination vertex is not in the graph");
+            if (!vertices[source].OutEdges.Contains(vertices[dest]) || !vertices[dest].InEdges.Contains(vertices[source])) throw new Exception("nothing to remove (edge)");
+            vertices[source].OutEdges.Remove(vertices[dest]);
+            vertices[dest].InEdges.Remove(vertices[source]);
         }
 
         public void RemoveVertex(T key)
         {
-            throw new NotImplementedException();
+            if (key == null) throw new ArgumentNullException();
+
+            if (!vertices.ContainsKey(key)) throw new ArgumentException("The vertex is not in this graph");
+
+            foreach (var vertex in vertices[key].InEdges)
+            {
+                vertex.InEdges.Remove(vertices[key]);
+            }
+
+            foreach (var vertex in vertices[key].OutEdges)
+            {
+                vertex.OutEdges.Remove(vertices[key]);
+            }
+
+            vertices.Remove(key);
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            throw new NotImplementedException();
+            return GetEnumerator();
         }
 
         IGraphVertex<T> IGraph<T>.GetVertex(T key)
         {
-            throw new NotImplementedException();
+            return vertices[key];
         }
 
         private class DiGraphVertex<T> : IDiGraphVertex<T>
         {
-            public IEnumerable<IDiEdge<T>> OutEdges => throw new NotImplementedException();
+            public HashSet<DiGraphVertex<T>> OutEdges { get; }
+            public HashSet<DiGraphVertex<T>> InEdges { get; }
+            IEnumerable<IDiEdge<T>> IDiGraphVertex<T>.OutEdges => OutEdges.Select(x => new DiEdge<T, int>(x, 1));
 
-            public IEnumerable<IDiEdge<T>> IrEdges => throw new NotImplementedException();
+            IEnumerable<IDiEdge<T>> IDiGraphVertex<T>.InEdges => InEdges.Select(x => new DiEdge<T, int>(x, 1));
 
-            public int OutEdgesCount => throw new NotImplementedException();
+            public int OutEdgesCount => OutEdges.Count;
 
-            public int InEdgesCount => throw new NotImplementedException();
+            public int InEdgesCount => InEdges.Count;
 
-            public T Key { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+            public T Key { get; set; }
 
-            public IEnumerable<IEdge<T>> Edges => throw new NotImplementedException();
+            public DiGraphVertex(T key)
+            {
+                Key = key;
+                OutEdges=new HashSet<DiGraphVertex<T>>();
+                InEdges=new HashSet<DiGraphVertex<T>>();    
+            }
+
+            public IEnumerable<IEdge<T>> Edges => OutEdges.Select(x=>new Edge<T,int>(x, 1));    
 
             public IEdge<T> GetEdge(IGraphVertex<T> targetVertex)
             {
-                throw new NotImplementedException();
+                return new Edge<T, int>(targetVertex, 1);
             }
 
             public IEnumerator<T> GetEnumerator()
             {
-                throw new NotImplementedException();
+                return OutEdges.Select(x => x.Key).GetEnumerator();
             }
 
             public IDiEdge<T> GetOutEdge(IDiGraphVertex<T> targetVertex)
             {
-                throw new NotImplementedException();
+                return new DiEdge<T, int>(targetVertex, 1);
             }
 
             IEnumerator IEnumerable.GetEnumerator()
             {
-                throw new NotImplementedException();
+                return GetEnumerator();
             }
         }
     }
