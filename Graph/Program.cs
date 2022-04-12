@@ -47,4 +47,34 @@ foreach (var vertex in graphWeighted)
     }
 }
 
+
+Console.WriteLine("-----------------Directed Graph----------------");
+var graphDirected = new Graph.Concretes.DiGraph<char>(new char[] { 'A', 'B', 'C', 'D','E' });
+
+foreach (var vertex in graphDirected)
+{
+    Console.WriteLine("   {0}", vertex);
+}
+
+
+graphDirected.AddEdge('B', 'A');
+graphDirected.AddEdge('A', 'D');
+graphDirected.AddEdge('D', 'E');
+graphDirected.AddEdge('C', 'D');
+graphDirected.AddEdge('C', 'E');
+graphDirected.AddEdge('C', 'A');
+graphDirected.AddEdge('C', 'B');
+Console.WriteLine("Is there an edge between A and B? {0}", graphDirected.HasEdge('A', 'B') ? "Yes" : "No");
+
+Console.WriteLine("Is there an edge between A and B? {0}", graphDirected.HasEdge('B', 'A') ? "Yes" : "No");
+
+foreach (var key in graphDirected)
+{
+    Console.WriteLine(key);
+    foreach (char item in graphDirected.GetVertex(key))
+    {
+        Console.WriteLine($" {item}");
+    }
+}
+
 Console.ReadKey();
