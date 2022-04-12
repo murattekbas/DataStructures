@@ -77,4 +77,38 @@ foreach (var key in graphDirected)
     }
 }
 
+Console.WriteLine("-----------------Directed Weighted Graph----------------");
+var graphWeightedDirected = new Graph.Concretes.WeightedDiGraph<char,int>(new char[] { 'A', 'B', 'C', 'D', 'E' });
+
+foreach (var vertex in graphWeightedDirected)
+{
+    Console.WriteLine("   {0}", vertex);
+}
+
+
+graphWeightedDirected.AddEdge('A', 'C',12);
+graphWeightedDirected.AddEdge('A', 'D', 60);
+graphWeightedDirected.AddEdge('B', 'A', 10);
+graphWeightedDirected.AddEdge('C', 'D', 32);
+graphWeightedDirected.AddEdge('C', 'B', 20);
+graphWeightedDirected.AddEdge('E', 'A', 7);
+
+Console.WriteLine("Is there an edge between A and B? {0}", graphWeightedDirected.HasEdge('A', 'B') ? "Yes" : "No");
+
+Console.WriteLine("Is there an edge between A and B? {0}", graphWeightedDirected.HasEdge('B', 'A') ? "Yes" : "No");
+
+foreach (var vertexKey in graphWeightedDirected)
+{
+    Console.WriteLine(vertexKey);
+    foreach (char key in graphWeightedDirected.GetVertex(vertexKey))
+    {
+        var nodeU = graphWeightedDirected.GetVertex(vertexKey);
+        var nodeV = graphWeightedDirected.GetVertex(key);
+        var w = nodeU.GetEdge(nodeV).Weight<int>();
+
+        Console.WriteLine($"  {vertexKey} - "+
+            $"({w}) - "+$"{key}");
+    }
+}
+
 Console.ReadKey();
