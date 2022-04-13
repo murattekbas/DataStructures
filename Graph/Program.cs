@@ -94,10 +94,9 @@ graphWeightedDirected.AddEdge('C', 'B', 20);
 graphWeightedDirected.AddEdge('E', 'A', 7);
 
 Console.WriteLine("Is there an edge between A and B? {0}", graphWeightedDirected.HasEdge('A', 'B') ? "Yes" : "No");
-
 Console.WriteLine("Is there an edge between A and B? {0}", graphWeightedDirected.HasEdge('B', 'A') ? "Yes" : "No");
 
-foreach (var vertexKey in graphWeightedDirected)
+foreach (var vertexKey in graphWeightedDirected)   
 {
     Console.WriteLine(vertexKey);
     foreach (char key in graphWeightedDirected.GetVertex(vertexKey))
@@ -110,5 +109,30 @@ foreach (var vertexKey in graphWeightedDirected)
             $"({w}) - "+$"{key}");
     }
 }
+
+Console.WriteLine("---------------DFS Algorithm-----------------");
+var graphDfs = new Graph.AdjancencySet.Graph<int>();
+for (int i = 0; i < 12; i++)
+{
+    graphDfs.AddVertex(i);
+}
+graphDfs.AddEdge(0, 1);
+graphDfs.AddEdge(1, 4);
+graphDfs.AddEdge(0, 4);
+graphDfs.AddEdge(0, 2);
+
+graphDfs.AddEdge(2, 5);
+graphDfs.AddEdge(2, 10);
+graphDfs.AddEdge(10, 11);
+graphDfs.AddEdge(11, 9);
+graphDfs.AddEdge(2, 9);
+
+graphDfs.AddEdge(5, 7);
+graphDfs.AddEdge(7, 8);
+graphDfs.AddEdge(5, 8);
+graphDfs.AddEdge(5, 6);
+
+var algorithm = new Graph.Search.DepthFirst<int>();
+Console.WriteLine("{0}", algorithm.Find(graphDfs, 110)?"Yes":"No"); 
 
 Console.ReadKey();
