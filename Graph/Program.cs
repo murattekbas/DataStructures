@@ -133,6 +133,33 @@ graphDfs.AddEdge(5, 8);
 graphDfs.AddEdge(5, 6);
 
 var algorithm = new Graph.Search.DepthFirst<int>();
-Console.WriteLine("{0}", algorithm.Find(graphDfs, 110)?"Yes":"No"); 
+Console.WriteLine("{0}", algorithm.Find(graphDfs, 110)?"Yes":"No");
+
+
+Console.WriteLine("---------------BFS Algorithm-----------------");
+var graphBfs = new Graph.AdjancencySet.Graph<int>();
+for (int i = 0; i < 12; i++)
+{
+    graphBfs.AddVertex(i);
+}
+
+graphBfs.AddEdge(0, 1);
+graphBfs.AddEdge(1, 4);
+graphBfs.AddEdge(0, 4);
+graphBfs.AddEdge(0, 2);
+
+graphBfs.AddEdge(2, 5);
+graphBfs.AddEdge(2, 10);
+graphBfs.AddEdge(10, 11);
+graphBfs.AddEdge(11, 9);
+graphBfs.AddEdge(2, 9);
+
+graphBfs.AddEdge(5, 7);
+graphBfs.AddEdge(7, 8);
+graphBfs.AddEdge(5, 8);
+graphBfs.AddEdge(5, 6);
+
+var algorithmBfs = new Graph.Search.BreadthFirst<int>();
+Console.WriteLine("{0}", algorithmBfs.Find(graphBfs, 110) ? "Yes" : "No");
 
 Console.ReadKey();
