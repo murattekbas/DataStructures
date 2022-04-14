@@ -9,7 +9,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BinaryHeap\BinaryHeap.csproj" />
-    <ProjectReference Include="..\Queue\Queue.csproj" />
   </ItemGroup>
 
 </Project>
