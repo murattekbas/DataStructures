@@ -47,6 +47,22 @@ foreach (var item in arrIns)
     Console.Write($"{item,-5}");
 }
 
+Console.WriteLine();
+Console.WriteLine("------------Quick Sort---------------");
+var arrQuick = new int[] { 16, 23, 44, 12, 55, 40, 6 };
+
+foreach (var item in arrQuick)
+{
+    Console.Write($"{item,-5}");
+}
+
+Console.WriteLine();
+QuickSort.Sort<int>(arrIns);
+foreach (var item in arrIns)
+{
+    Console.Write($"{item,-5}");
+}
+
 
 
 
